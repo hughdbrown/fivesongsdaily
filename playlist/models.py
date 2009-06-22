@@ -22,7 +22,7 @@ class Song(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-	unique_together = ("artist", "title",)
+        unique_together = ("artist", "title",)
 
 class Playlist(models.Model):
     """
@@ -46,7 +46,7 @@ class Playlist(models.Model):
 
     class Meta:
         ordering = ['-play_date']
-	unique_together = ("song1", "song2", "song3", "song4", "song5",)
+        unique_together = ("song1", "song2", "song3", "song4", "song5",)
 
 class Comment(models.Model):
     """
