@@ -6,8 +6,6 @@ except ImportError:
     import Image, ImageFilter
 
 from django.db import models
-from django.http import Http404
-from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
@@ -38,7 +36,7 @@ class UserProfile(models.Model):
 
     def fullname(self):
         return "%s, %s" %(self.last_name,self.first_name)
-        fullname.short_description = 'Full Name'
+    fullname.short_description = 'Full Name'
 
     class Meta:
         ordering = ['last_name']
@@ -85,9 +83,11 @@ class Avatar(models.Model):
             name, extension = os.path.splitext(filename)
             for key in AVATAR_SIZES:
                 try:
+                    # Saving involves deleting? Why is this not a .save() call?
                     storage.delete(os.path.join(base, "%s.%s%s" % (name, key, extension)))
                 except:
                     pass
+            # Saving involves deleting? Why is this not a .save() call?
             avatar.delete()
 
         super(Avatar, self).save()

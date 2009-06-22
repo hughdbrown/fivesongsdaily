@@ -8,6 +8,7 @@ TEMPLATE_DEBUG = DEBUG
 PROJECT_ROOT = os.path.dirname(__file__)
 
 AKISMET_API_KEY = ''
+AWS_SECRET_ACCESS_KEY = ''
 
 LOGOUT_URL = '/accounts/login/'
 
