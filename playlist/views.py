@@ -28,11 +28,8 @@ def show_home(request):
     except ObjectDoesNotExist:
         playlist = None
 
-    try:
-        all_playlists = Playlist.objects.filter(active=True).filter(play_date__lt=todaysdate).order_by('-play_date')[:4]
-    except ObjectDoesNotExist:
-        all_playlists = None
-    
+	all_playlists = Playlist.objects.filter(active=True).filter(play_date__lt=todaysdate).order_by('-play_date')[:4]
+
     context = {'playlist' : playlist, 'all_playlists' : all_playlists}
 
     return render_to_response(template_name, context, context_instance=RequestContext(request))
@@ -44,10 +41,7 @@ def show_all(request):
     page = int(request.GET.get('page', '1'))
 
     todaysdate = datetime.datetime.now().strftime("%Y-%m-%d")
-    try:
-        all_playlists = Playlist.objects.filter(active=True).filter(play_date__lt=todaysdate).order_by('-play_date')
-    except ObjectDoesNotExist:
-        all_playlists = None
+    all_playlists = Playlist.objects.filter(active=True).filter(play_date__lt=todaysdate).order_by('-play_date')
 
     total_entries = all_playlists.count()
     total_pages = (total_entries/per_page)+1
@@ -84,10 +78,7 @@ def show_id(request, id):
     if playlist.play_date == todaysdate:
         template_name = 'home.html'
 
-    try:
-        all_playlists = Playlist.objects.filter(active=True).filter(play_date__lt=todaysdate).order_by('-play_date')[:4]
-    except ObjectDoesNotExist:
-        all_playlists = None
+    all_playlists = Playlist.objects.filter(active=True).filter(play_date__lt=todaysdate).order_by('-play_date')[:4]
 
     if request.method == 'POST':  # new comment
         form = form(request.POST)
@@ -110,16 +101,12 @@ def preview_id(request, id):
 
     if request.user.is_superuser:
         try:
-            playlist = Playlist.objects.get(pk=id, active=True)
+            context = {'playlist' : Playlist.objects.get(pk=id, active=True)}
+            return render_to_response(template_name, context, context_instance=RequestContext(request))
         except ObjectDoesNotExist:
-            playlist = None
             return HttpResponseRedirect('/')
     else:
-        playlist = None
         return HttpResponseRedirect('/')
-
-    context = {'playlist' : playlist}
-    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 @login_required
 def user_song_upload(request):
