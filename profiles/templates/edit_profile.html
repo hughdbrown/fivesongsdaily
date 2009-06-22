@@ -25,18 +25,33 @@
 
 <form enctype="multipart/form-data" action="." method="post">
 
-<p><label>Email Address:</label><input type="text" name="email" value="{{ form.email }}"><br /></p>
+<fieldset>
+<legend>Name</legend>
 <p>{{ form.first_name.label_tag }} {{ form.first_name.as_widget }}<br /></p>
 <p>{{ form.last_name.label_tag }} {{ form.last_name.as_widget }}<br /></p>
+</fieldset>
+<fieldset>
+<legend>Address</legend>
 <p>{{ form.city.label_tag }} {{ form.city.as_widget }}<br /></p>
 <p>{{ form.state.label_tag }} {{ form.state.as_widget }}<br /></p>
 <p>{{ form.zip_code.label_tag }} {{ form.zip_code.as_widget }}<br /></p>
+</fieldset>
+<fieldset>
+<legend>Internet</legend>
+<p><label>Email Address:</label><input type="text" name="email" value="{{ form.email }}"><br /></p>
 <p>{{ form.twitter.label_tag }} {{ form.twitter.as_widget }}<br /></p>
 <p>{{ form.livejournal.label_tag }} {{ form.livejournal.as_widget }}<br /></p>
 <p>{{ form.website.label_tag }} {{ form.website.as_widget }}<br /></p>
+</fieldset>
+<fieldset>
+<legend>Bands</legend>
 <p>{{ form.favorite_bands.label_tag }} {{ form.favorite_bands.as_widget }}<br /></p>
+</fieldset>
+<fieldset>
+<legend>Privacy</legend>
 <p>{{ form.visible.label_tag }} {{ form.visible.as_widget }}<br /></p>
 <p>{{ form.email_notify.label_tag }} {{ form.email_notify.as_widget }}<br /></p>
+</fieldset>
 <p align="center"><input type="submit" value="Save Your Profile" /><br /></p>
 
 </form>
