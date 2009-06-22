@@ -14,9 +14,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.loader import render_to_string
 
-from fivesongs.playlist.models import Song, Playlist
-from fivesongs.playlist.forms import SongForm, PlaylistForm
-from fivesongs.profiles.models import Avatar
+from fivesongsdaily.playlist.models import Song, Playlist
+from fivesongsdaily.playlist.forms import SongForm, PlaylistForm
+from fivesongsdaily.profiles.models import Avatar
 
 @login_required
 def show_home(request):
