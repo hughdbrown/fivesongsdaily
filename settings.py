@@ -53,10 +53,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'fivesongsdaily.urls'
 
-TEMPLATE_ROOT = ''
-
 TEMPLATE_DIRS = (
-    #'/fivesongs/templates/',
     os.path.join(PROJECT_ROOT, 'templates/'),
     os.path.join(DJANGO_ROOT, 'contrib/admin/templates/')
 )
