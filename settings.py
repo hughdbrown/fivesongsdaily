@@ -1,4 +1,4 @@
-import os, logging, sys
+import os.path, logging, sys
 
 # Django settings for the fivesongs project.
 try:
