@@ -6,7 +6,7 @@
 
     <h1>Thank you for your comment.</h1>
 
-    <a href="/id/{{ comment.object_pk }}/">Return to the original post</a>
+    <a href="{% playlist_byid comment.object_pk %}">Return to the original post</a>
 
 {% endblock %}
 
