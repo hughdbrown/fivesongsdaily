@@ -5,8 +5,8 @@
         {% for playlist in all_playlists %}
             <div class="archive_list">
 		<p>
-		<a class="playlist_date" href="/id/{{ playlist.id }}">Playlist for {{ playlist.play_date|date:"M d, Y" }}</a>
-		<a class="comment_count" href="/id/{{ playlist.id }}">{% get_comment_count for playlist as comment_count %} ({{ comment_count }} comments)</a><br />
+		<a class="playlist_date" href="{% url playlist_byid playlist.id %}">Playlist for {{ playlist.play_date|date:"M d, Y" }}</a>
+		<a class="comment_count" href="{% url playlist_byid playlist.id %}">{% get_comment_count for playlist as comment_count %} ({{ comment_count }} comments)</a><br />
 		{{ playlist.song1 }}<br />
                 {{ playlist.song2 }}<br />
                 {{ playlist.song3 }}<br />
