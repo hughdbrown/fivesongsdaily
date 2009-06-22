@@ -11,8 +11,8 @@ from django import forms
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from fivesongs.profiles.models import UserProfile, Avatar
-from fivesongs.profiles.forms import UserProfileForm
+from fivesongsdaily.profiles.models import UserProfile, Avatar
+from fivesongsdaily.profiles.forms import UserProfileForm
 
 @login_required
 def searchband(request, bandname):

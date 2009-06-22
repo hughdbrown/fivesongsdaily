@@ -8,7 +8,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.loader import render_to_string
 
-from fivesongs.contact.forms import ContactForm
+from fivesongsdaily.contact.forms import ContactForm
 
 def contact(request):
     context = {}

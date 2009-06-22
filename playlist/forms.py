@@ -5,7 +5,7 @@ from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
-from fivesongs.playlist.models import Song, Playlist, Comment
+from fivesongsdaily.playlist.models import Song, Playlist, Comment
 
 class CommentForm(ModelForm):
     fullname = forms.CharField(label='Your Name', error_messages={'required': 'Please enter your name.'})

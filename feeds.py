@@ -3,7 +3,7 @@ from time import strftime
 
 from django.contrib.syndication.feeds import Feed
 
-from fivesongs.playlist.models import Playlist
+from fivesongsdaily.playlist.models import Playlist
 
 class LatestPlaylists(Feed):
     title = "Five Songs Daily"

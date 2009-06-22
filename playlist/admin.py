@@ -1,4 +1,4 @@
-from fivesongs.playlist.models import Song, Playlist
+from fivesongsdaily.playlist.models import Song, Playlist
 
 from django.contrib import admin
 

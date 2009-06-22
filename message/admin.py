@@ -1,4 +1,4 @@
-from fivesongs.message.models import Message
+from fivesongsdaily.message.models import Message
 
 from django.contrib import admin
 

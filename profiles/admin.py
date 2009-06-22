@@ -1,4 +1,4 @@
-from fivesongs.profiles.models import UserProfile, Avatar
+from fivesongsdaily.profiles.models import UserProfile, Avatar
 
 from django.contrib import admin
 

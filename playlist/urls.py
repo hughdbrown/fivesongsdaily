@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.contrib.comments.models import Comment
 from django.views.generic.simple import direct_to_template
 
-from fivesongs.playlist import views
+from fivesongsdaily.playlist import views
 
 urlpatterns = patterns('',
     url(r'^preview/(?P<id>\w+)/*$',	views.preview_id,	    name='playlist_previewbyid'),
