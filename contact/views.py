@@ -15,18 +15,18 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-	    sender = request.user.email
-	    topic = form.cleaned_data['topic']
-	    message = form.cleaned_data['message']
-	    # request.POST['message']
+            sender = request.user.email
+            topic = form.cleaned_data['topic']
+            message = form.cleaned_data['message']
+            # request.POST['message']
             from django.core.mail import send_mail
             email_dict = { 'sender': sender, 'message': message, 'date': 'today' }
             email_dict['site'] = Site.objects.get_current()
             subject = "Contact message sent from " + str(email_dict['site']) + " : " + topic
             body = render_to_string('contact_notification.txt', email_dict)
             sent = send_mail(subject, body, settings.ADMIN_EMAIL, [settings.ADMIN_EMAIL])
-	    # context['sender'] = sender
-	    context['message'] = message
+            # context['sender'] = sender
+            context['message'] = message
             # return HttpResponseRedirect('/')
     else:
         form = ContactForm() # An unbound form
