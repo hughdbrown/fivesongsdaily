@@ -1,9 +1,7 @@
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, include
 from django.contrib import admin
-# import django.contrib.auth.views
 
 from fivesongsdaily.settings import MEDIA_ROOT
-
 from fivesongsdaily.feeds import LatestPlaylists
 
 admin.autodiscover()
