@@ -40,13 +40,12 @@ def view(request, username):
 		profile = None
 
 	logging.debug(profile)
-
 	permission = has_permission(request.user, request.user.username, username)
 	if permission is True:
 		logging.debug('**** OK - viewing your own profile')
-	if not profile:
-	    logging.debug('***** you havent created a profile yet, redir to edit')
-	    return HttpResponseRedirect('/profile/edit/%s/' % request.user.username)
+		if not profile:
+			logging.debug('***** you havent created a profile yet, redir to edit')
+			return HttpResponseRedirect('/profile/edit/%s/' % request.user.username)
 	else:
 		if profile and profile.visible:
 			logging.debug('***** this user has allowed their profile to be visible to other users')
@@ -55,23 +54,13 @@ def view(request, username):
 			logging.debug('***** its not your profile, and the user has not made it visible to all')
 			context['error_message'] = 'You do not have permission to view this profile.'
 
+	try:
+		context['avatar'] = Avatar.objects.get(user=requested_user.id)
+	except ObjectDoesNotExist:
+		pass
+
 	if profile:
-		try:
-			avatar = Avatar.objects.get(user=requested_user.id)
-		except ObjectDoesNotExist:
-			avatar = None
-		context['avatar'] = avatar
-
-		try:
-			favorite_bands = profile.favorite_bands
-		except ObjectDoesNotExist:
-			favorite_bands = None
-	
-		if favorite_bands:
-			band_list = favorite_bands.split (',')
-			bands = [bands.append(band.strip()) for band in band_list]
-			context['bands'] = bands	
-
+		context['bands'] = [band.strip() for band in profile.favorite_bands.split(',')]	
 	context['profile'] = profile
 
 	return render_to_response(template_name, context, context_instance=RequestContext(request))
@@ -86,8 +75,8 @@ def edit(request, username):
     form_class = UserProfileForm
 
     permission = has_permission(request.user, request.user.username, username)
-    if permission is not True:
-    	context['error_message'] = 'You do not have permission to create/edit this profile.'
+    if not permission:
+        context['error_message'] = 'You do not have permission to create/edit this profile.'
 
     try:
         profile = UserProfile.objects.get(user=request.user.id, active=True)
@@ -129,7 +118,7 @@ def edit(request, username):
     return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 def has_permission(request_user, request_username, username):
-	"""
-	Username in the request must match the logged in user.
-	"""
-	return cmp(request_username, username) == 0
+    """
+    Username in the request must match the logged in user.
+    """
+    return cmp(request_username, username) == 0
