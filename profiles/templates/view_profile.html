@@ -13,7 +13,6 @@
 {% else %}
 
     <p><b>Profile for: {{ profile.user.username }} (that's you!)</b><img src="/site_media/{{ avatar.image }}" height="50" width="50" align="right" hspace="100"></p>
-    <p></p>
 <fieldset>
 <legend>Name</legend>
     <p><label>First Name:</label> {{ profile.first_name }}</p>
@@ -41,8 +40,8 @@
                 <a href="/profile/band/{{ band }}/">{{ band }}</a>
             {% endfor %}
             </div>
-	    <div class="clear"></div>
 	{% endif %}
+	<br />
     </p>
 </fieldset>
 <fieldset>

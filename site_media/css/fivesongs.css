@@ -41,7 +41,7 @@ label { font-weight: bold; width: 200px; float: left; text-align: right; margin-
 .header_two { height: 25px; color: #fff; line-height: 25px; background-color: #003366; }
 .header_two a { color: #fff; }
 
-#container{ border: 0px solid green; min_height: 500px; height: 500px; margin: 0; padding: 3px; }
+#container{ border: 0px solid green; height: 500px; margin: 0; padding: 3px; }
 #content_bigcol { border-right: 1px solid #003366; padding: 5px 15px 5px 15px; width: 700px; }
 #content_smallcol { border-left: 1px solid #003366; padding: 5px 15px 5px 15px; width: 300px; }
 
@@ -82,3 +82,12 @@ label { font-weight: bold; width: 200px; float: left; text-align: right; margin-
 #bottom{ width: 1000px; }
 .footerlink, .footerlink a { float: left; margin: 5px; color: #999; text-decoration: none; }
 
+legend {
+    text-transform: uppercase;
+    font-size: 1.3em;
+    padding: 5px;
+    margin-left: 1em;
+    color: #ffffff;
+    background: #003366;
+}
+fieldset p, fieldset div {line-height:12px;}
