@@ -20,6 +20,9 @@ class Song(models.Model):
     def __str__(self):
         return u"%s - %s" %(self.artist, self.title)
 
+    def __unicode__(self):
+        return u"%s - %s" %(self.artist, self.title)
+
     class Meta:
         ordering = ['-created_at']
         unique_together = ("artist", "title",)

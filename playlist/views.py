@@ -20,19 +20,29 @@ from fivesongsdaily.profiles.models import Avatar
 
 @login_required
 def show_home(request):
-    template_name = 'home.html'
+	template_name = 'home.html'
 
-    todaysdate = datetime.datetime.now().strftime("%Y-%m-%d")
-    try:
-        playlist = Playlist.objects.get(play_date=todaysdate, active=True)
-    except ObjectDoesNotExist:
-        playlist = None
+	todaysdate = datetime.datetime.now().strftime("%Y-%m-%d")
+	#    try:
+	#        playlist = Playlist.objects.get(play_date=todaysdate, active=True)
+	#    except ObjectDoesNotExist:
+	#        playlist = None
+	#
+	#	all_playlists = Playlist.objects.filter(active=True).filter(play_date__lt=todaysdate).order_by('-play_date')[:4]
 
-	all_playlists = Playlist.objects.filter(active=True).filter(play_date__lt=todaysdate).order_by('-play_date')[:4]
+	try:
+		playlist = Playlist.objects.get(play_date=todaysdate, active=True)
+	except ObjectDoesNotExist:
+		playlist = None
+	
+	try:
+		all_playlists = Playlist.objects.filter(active=True).filter(play_date__lt=todaysdate).order_by('-play_date')[:4]
+	except ObjectDoesNotExist:
+		all_playlists = None
 
-    context = {'playlist' : playlist, 'all_playlists' : all_playlists}
-
-    return render_to_response(template_name, context, context_instance=RequestContext(request))
+	context = {'playlist' : playlist, 'all_playlists' : all_playlists}
+	
+	return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 @login_required
 def show_all(request):
@@ -132,9 +142,24 @@ def user_playlist(request, message):
     template_name = 'playlist_save.html'
     form_class = PlaylistForm
 
-    user_songs = Song.objects.filter(user=request.user)
-    user_pending_playlists = user_songs.filter(active=False).order_by('-created_at')
-    user_queued_playlists = user_songs.filter(active=True).order_by('-created_at')
+    #user_songs = Song.objects.filter(user=request.user)
+    #user_pending_playlists = user_songs.filter(active=False).order_by('-created_at')
+    #user_queued_playlists = user_songs.filter(active=True).order_by('-created_at')
+
+    try:
+        user_songs = Song.objects.filter(user=request.user)
+    except ObjectDoesNotExist:
+        user_songs = None
+ 
+    try:
+        user_pending_playlists = Playlist.objects.filter(user=request.user, active=False).order_by('-created_at')
+    except ObjectDoesNotExist:
+        user_pending_playlists = None
+ 
+    try:
+        user_queued_playlists = Playlist.objects.filter(user=request.user, active=True).order_by('-created_at')
+    except ObjectDoesNotExist:
+        user_queued_playlists = None
 
     if request.method == 'POST':
         form = form_class(request.POST)

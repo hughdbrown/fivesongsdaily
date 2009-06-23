@@ -26,16 +26,26 @@ class SongForm(ModelForm):
         exclude = ('user',)
 
 class PlaylistForm(ModelForm):
-    def clean(self): 
-        data = dict((k, v) for k,v in self.cleaned_data.iteritems() if (type(v) is str or type(v) is unicode))
-        logging.debug('CLEANED DATA ================ %s' %data)
-        names = [("song" + str(i)) for i in range(1, 6)]
-        s = set(self.cleaned_data[name] for name in names)
-        if len(s) != len(names) :
-            raise forms.ValidationError(_(u'You have selected the same song more than once - try again.'))
-        return self.cleaned_data
+    #def clean(self): 
+    #    data = dict((k, v) for k,v in self.cleaned_data.iteritems() if (type(v) is str or type(v) is unicode))
+    #    logging.debug('CLEANED DATA ================ %s' %data)
+    #    names = [("song" + str(i)) for i in range(1, 6)]
+    #    s = set(self.cleaned_data[name] for name in names if name in self.cleaned_data)
+    #    if len(s) != len(names) :
+    #        raise forms.ValidationError(_(u'You have selected the same song more than once - try again.'))
+    #    return self.cleaned_data
 
-    class Meta:
-        model = Playlist
-        exclude = ('user',)
+	def clean(self):
+		data = {}
+		for k,v in self.cleaned_data.iteritems():
+			if type(v) is str or type(v) is unicode:
+				data[k] = v
+		logging.debug('CLEANED DATA ================ %s' %data)
+		# if self.cleaned_data['song1'] == (self.cleaned_data['song2'] or self.cleaned_data['song3'] or self.cleaned_data['song4'] or self.cleaned_data['song5']):
+			# raise forms.ValidationError(_(u'You have selected the same song more than once - try again.'))
+		return self.cleaned_data
+
+	class Meta:
+		model = Playlist
+		exclude = ('user',)
 
