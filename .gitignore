@@ -3,3 +3,6 @@ local_settings.py
 logs/
 *.db
 *.kpf
+site_media/avatars/
+site_media/mp3/
+

@@ -1,6 +1,4 @@
-LICENSE_KEY, ASSOCIATE = "03E2TP9A94YFYWNK9T82", "iwebtherefore-20"
-
-LICENSE_KEY, ASSOCIATE= "18C3VZN9HCECM5G3HQG2", "webservices-20"
+from fivesongsdaily.settings import LICENSE_KEY, ASSOICATE
 
 def format_param(params):
     args = ["%s=%s" % (key, ",".join(v for v in value)) for key, value in params.items() if type(value) is list ] + \
@@ -34,6 +32,7 @@ def getAsinAndUrlFromXML(xml):
         r  = [(x[0].childNodes[0].nodeValue if x else "") for x in (asin, url, artist, title)]
         result.append(r)
     return result
+
 def getCoverArt(title) :
     try :
         url = AWSUrl(title)

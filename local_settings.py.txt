@@ -10,6 +10,9 @@ PROJECT_ROOT = os.path.dirname(__file__)
 AKISMET_API_KEY = ''
 AWS_SECRET_ACCESS_KEY = ''
 
+# AwS keys for downloading coverart
+LICENSE_KEY, ASSOCIATE = '', ''
+
 LOGOUT_URL = '/accounts/login/'
 
 DATABASE_ENGINE = ''	    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
