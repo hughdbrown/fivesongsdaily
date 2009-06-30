@@ -70,6 +70,7 @@ INSTALLED_APPS = (
     'fivesongsdaily.pages',
     'fivesongsdaily.contact',
     'fivesongsdaily.message',
+    'fivesongsdaily.test',
 )
 
 
