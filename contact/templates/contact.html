@@ -19,27 +19,16 @@
 
     {% else %}
 
-    <div class="page">
-    <div class="page_title">contact</div>
-    <div class="page_content">
-
-    <div class="form_box">
+    <fieldset>
+	<legend>Contact</legend>
         <form action="" method="POST">
-        <div class="fieldwrapper">
-            {{ form.topic.as_widget }}<br />
-        </div>
-        <div class="fieldwrapper">
-            {{ form.message.as_widget }}<br />
-        </div>
-        <div class="left"><input type="submit" value="Send" /></div>
-        <div class="right">
-	    {{ form.message.errors }}<br />
-	</div>
-        <div style="clear: both;"></div>
+		<br />
+        <div class="fieldwrapper">{{ form.topic.as_widget }}<br /><br /></div>
+        <div class="fieldwrapper">{{ form.message.as_widget }}<br /><br /></div>
+        <div class="left"><input type="submit" value="Send" /><br /></div>
+        <div class="right">{{ form.message.errors }}<br /><br /></div>
         </form>
-    </div>
-
-    </div>
+	</fieldset>
 
     {% endif %}
 

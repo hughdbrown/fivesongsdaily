@@ -4,19 +4,17 @@
 
 {% block content_bigcol %}
 
-    <table>
-    <tr valign="top">
 	<form enctype="multipart/form-data" action="/playlist/song/add/" method="post">
-        <td>{{ form.artist.label }} {{ form.artist }}</td>
-        <td>{{ form.title.label }} {{ form.title }}</td>
-        <td>{{ form.filepath.label }} {{ form.filepath }}</td>
-        <td valign="bottom">
+	<fieldset>
+	<legend>Add a song</legend>
+        <p>{{ form.artist.label_tag }} {{ form.artist }}<br /></p>
+        <p>{{ form.title.label_tag }} {{ form.title }}<br /></p>
+        <p>{{ form.filepath.label_tag }} {{ form.filepath }}<br /></p>
+        <p valign="bottom">
 	    <input type="hidden" name="song_number" id="id_song_number" value="">
 	    <input type="submit" value="Add song" /><br />
 		</td>
     </form>
-    </tr>
-    </table>
 
     <form name="user_playlist" action="." method="post">
 
@@ -24,4 +22,3 @@
     </form>
 
 {% endblock %}
-

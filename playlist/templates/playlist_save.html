@@ -8,19 +8,16 @@
 
     <div class="page_title">{{ user.username }}'s playlists</div>
 
-    <table>
-    <tr valign="top">
-        <form enctype="multipart/form-data" action="/playlist/song/add/" method="post">
-        <td>{{ form_song.artist.label }} {{ form_song.artist }}</td>
-        <td>{{ form_song.title.label }} {{ form_song.title }}</td>
-        <td>{{ form_song.filepath.label }} {{ form_song.filepath }}</td>
-        <td>
-	    <input type="submit" value="Add a song" /><br />
-	    (Limit: 5 MB)<br />
-		</td>
-        </form>
-    </tr>
-    </table>
+	<form enctype="multipart/form-data" action="/playlist/song/add/" method="post">
+	<fieldset>
+	<legend>Upload song</legend>
+	<p>{{ form_song.artist.label_tag }} {{ form_song.artist.as_widget }}<br /></p>
+	<p>{{ form_song.title.label_tag }} {{ form_song.title.as_widget }}<br /></p>
+	<p>{{ form_song.filepath.label_tag }} {{ form_song.filepath.as_widget }}<br /></p>
+	</fieldset>
+	<p align="center"><input type="submit" value="Add a song" /><br /></p>
+	</form>
+
     <div class="right" style="color: red;">
 	{% if upload_message %}{{ upload_message }}{% endif %}
         {% if form_song.non_field_errors %}<ul class="errorlist">{{ form_song.non_field_errors.as_ul }}</ul>{% endif %}
