@@ -1,2 +1,5 @@
 *.pyc
 local_settings.py
+logs/
+*.db
+*.kpf
