@@ -27,9 +27,9 @@ class SongForm(ModelForm):
 
 class PlaylistForm(ModelForm):
     #def clean(self): 
-    #    data = dict((k, v) for k,v in self.cleaned_data.iteritems() if (type(v) is str or type(v) is unicode))
+    #    data = dict((k, v) for k,v in self.cleaned_data.iteritems() if (type(v) in (str, unicode)))
     #    logging.debug('CLEANED DATA ================ %s' %data)
-    #    names = [("song" + str(i)) for i in range(1, 6)]
+    #    names = [name for name in self.cleaned_data if name.startswith('song')]
     #    s = set(self.cleaned_data[name] for name in names if name in self.cleaned_data)
     #    if len(s) != len(names) :
     #        raise forms.ValidationError(_(u'You have selected the same song more than once - try again.'))
